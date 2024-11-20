@@ -26,6 +26,12 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        // Only for testing
+        if (Input.GetKeyDown(KeyCode.Space))
+           Hit(10);
+
+
+       
         if (dead) 
         {   
             movement = Vector2.zero;
@@ -59,7 +65,7 @@ public class Player : MonoBehaviour
 
      void Hit(int damage)
      {
-        anim.SetTrigger("hit");
+        anim.SetTrigger("Hit");
         currentHealth -= damage;
         healthText.text = Mathf.Clamp(currentHealth, 0, maxHealth).ToString();
      }
