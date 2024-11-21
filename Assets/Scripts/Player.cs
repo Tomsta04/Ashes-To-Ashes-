@@ -22,13 +22,16 @@ public class Player : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+
+        currentHealth = maxHealth;
+        healthText.text = maxHealth.ToString();
     }
 
     private void Update()
     {
         // Only for testing
         if (Input.GetKeyDown(KeyCode.Space))
-           Hit(10);
+            Characterhit(10);
 
 
        
@@ -63,12 +66,17 @@ public class Player : MonoBehaviour
           // Check if we collide with an enemey
      }
 
-     void Hit(int damage)
+     void Characterhit(int damage)
      {
-        anim.SetTrigger("Hit");
+        anim.SetTrigger("hit");
         currentHealth -= damage;
         healthText.text = Mathf.Clamp(currentHealth, 0, maxHealth).ToString();
+    
+        if (currentHealth <= 0)
+             Die();
      }
+
+
 
      void Die()
      {
